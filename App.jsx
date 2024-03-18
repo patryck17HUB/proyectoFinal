@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { View, Image, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, } from "react-native";
 import Workouts from "./screens/workouts";
 import Explore from "./screens/explore";
+import Profile from "./screens/profile";
+import Settings from "./screens/settings";
 import { Color, FontSize, FontFamily } from "./styles/GlobalStyles";
 
 // Navegar entre paginas
@@ -68,7 +70,7 @@ function MyTabs() {
 
       <Tab.Screen 
         name="Profile" 
-        component={Workouts}
+        component={Profile}
         options={{
           tabBarLabel: 'Perfil',
           tabBarIcon: ({color}) => (
@@ -79,7 +81,7 @@ function MyTabs() {
 
       <Tab.Screen 
         name="Settings" 
-        component={Workouts}
+        component={Settings}
         options={{
           tabBarLabel: 'Config',
           tabBarIcon: ({color}) => (
