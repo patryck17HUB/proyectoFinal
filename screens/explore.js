@@ -1,16 +1,13 @@
 import React from "react";
 import { View, Image, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, } from "react-native";
-import { styles } from "../styles/homestyles";
+import { styles } from "../styles/explorestyles";
+import { globalstyles } from "../styles/GlobalStyles";
 
-export default function Home({ navigation }) {
+export default function Explore({ navigation }) {
   return (
-    <View style={styles.home}>
-      <View style={[styles.encabezado]}>
-        <Text style={[styles.si]}>Si</Text>
-        <Text style={[styles.si]}>Si</Text>
-      </View>
+    <View style={globalstyles.background}>
 
-      <ScrollView style={[styles.contenido]}>
+      <ScrollView style={[globalstyles.contenido]}>
         <Text style={[styles.home1]}>HOME</Text>
         <Text style={[styles.home1]}>HOME</Text>
         <Text style={[styles.home1]}>HOME</Text>

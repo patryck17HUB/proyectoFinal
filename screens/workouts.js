@@ -1,17 +1,14 @@
 import React from "react";
 import { View, Image, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, } from "react-native";
 import { getMuscleList } from "../components/musclelistfunctions";
-import { styles } from "../styles/muscleliststyles";
+import { styles } from "../styles/workoutsstyles";
+import { globalstyles } from "../styles/GlobalStyles";
 
-export default function MuscleList({ navigation }) {
+export default function Workouts({ navigation }) {
   return (
-    <View style={styles.home}>
-      <View style={[styles.encabezado]}>
-        <Text style={[styles.si]}>Si</Text>
-        <Text style={[styles.si]}>Si</Text>
-      </View>
+    <View style={globalstyles.background}>
 
-      <ScrollView style={[styles.contenido]}>
+      <ScrollView style={[globalstyles.contenido]}>
 
         <TouchableOpacity style={styles.button}
           onPress={(getMuscleList)}>
