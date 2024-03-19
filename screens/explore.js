@@ -9,16 +9,7 @@ export default function Explore({ navigation }) {
 
       <ScrollView style={[globalstyles.contenido]}>
         <Text style={[styles.home1]}>HOME</Text>
-        <Text style={[styles.home1]}>HOME</Text>
-        <Text style={[styles.home1]}>HOME</Text>
-        <Text style={[styles.home1]}>HOME</Text>
-        <Text style={[styles.home1]}>HOME</Text>
-        <Text style={[styles.home1]}>HOME</Text>
-        <Text style={[styles.home1]}>HOME</Text>
-        <Text style={[styles.home1]}>HOME</Text>
-        <Text style={[styles.home1]}>HOME</Text>
-        <Text style={[styles.home1]}>HOME</Text>
-        <Text style={[styles.home1]}>HOME</Text>
+
        </ScrollView> 
 
     </View>

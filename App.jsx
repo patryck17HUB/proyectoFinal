@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { View, Image, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, } from "react-native";
+import React, { useEffect, useState } from "react";
 import Workouts from "./screens/workouts";
 import Explore from "./screens/explore";
 import Profile from "./screens/profile";
 import Settings from "./screens/settings";
+import Login from "./screens/login";
 import { Color, FontSize, FontFamily } from "./styles/GlobalStyles";
 
 // Navegar entre paginas
@@ -16,11 +16,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
+const Stack = createNativeStackNavigator();
 
-//const Stack = createNativeStackNavigator();
 //const Tab = createMaterialBottomTabNavigator();
 
-function MyTabs() {
+function MainTabs() {
   return (
     <Tab.Navigator 
       initialRouteName="Explore"
@@ -95,9 +95,34 @@ function MyTabs() {
 }
 
 export default function App() {
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      handleGetToken();
+    }
+    , 2000);
+  }); 
+
+  const handleGetToken = async () => {
+    const token = await AsyncStorage.getItem("AccessToken");
+    console.log(token);
+    if (token) {
+      setUserLoggedIn(true);
+    }
+  }
+
+  console.log(userLoggedIn);
+
   return (
     <NavigationContainer>
-      <MyTabs />
+      {userLoggedIn ? (
+        <MainTabs />
+      ) : (
+        <Stack.Navigator>
+          <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+        </Stack.Navigator>
+      )}
     </NavigationContainer>
   );
 }
