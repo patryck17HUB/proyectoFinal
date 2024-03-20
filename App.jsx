@@ -1,83 +1,73 @@
-import React, { useEffect, useState } from "react";
-import { View, Image, Text, SafeAreaView, TouchableOpacity, StyleSheet, ScrollView, TextInput, } from "react-native";
+import  React, { useEffect, useState } from "react";
+import { View, SafeAreaView, StyleSheet, ScrollView } from "react-native";
+import { Color, FontSize, FontFamily } from "./styles/GlobalStyles";
+
 import Workouts from "./screens/workouts";
 import Explore from "./screens/explore";
 import Profile from "./screens/profile";
 import Settings from "./screens/settings";
 import Login from "./screens/login";
-import { Color, FontSize, FontFamily } from "./styles/GlobalStyles";
-
-import { Text, BottomNavigation } from 'react-native-paper';
 
 // Navegar entre paginas
 import { NavigationContainer } from "@react-navigation/native";
-
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-
-const TabArr = [
-  {
-    name: "Explore",
-    label: "Explorar",
-    component: Explore,
-    icon: "search-web",
-    tabbarColor: "#FF1C1C",
-  },
-  {
-    name: "Workouts",
-    label: "Plan",
-    component: Workouts,
-    icon: "arm-flex",
-    tabbarColor: "#72FF1C",
-  },
-  {
-    name: "Profile",
-    label: "Perfil",
-    component: Profile,
-    icon: "account",
-    tabbarColor: "#1CFFE3",
-  },
-  {
-    name: "Settings",
-    label: "Config",
-    component: Settings,
-    icon: "cog",
-    tabbarColor: "#D91CFF",
-  },
-];
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { BottomNavigation, Text } from 'react-native-paper';
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 //const Tab = createMaterialTopTabNavigator();
 
+const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
-const Tab = createMaterialBottomTabNavigator();
+//const Tab = createMaterialBottomTabNavigator();
 
 function MainTabs() {
-  return (
-    <SafeAreaView style={{flex: 1}}>
-    <Tab.Navigator  
-      shifting={true}
-      barStyle={{ height: 70 }}
-      screenOptions={{}}
-    >
-      {TabArr.map((item, index) => (
-        <Tab.Screen 
-          key={index} 
-          name={item.name} 
-          component={item.component}
-          options={{
-            tabBarColor: "#FF1C1C",
-            tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons name={item.icon} color = {color} size={26} />
-            )
-          }}
-      />
-      ))}
 
-    </Tab.Navigator>
-    </SafeAreaView>
+  const [index, setIndex] = React.useState(0);
+
+  const [routes] = React.useState([
+    { key: 'Explore', title: 'Explorar', component: Explore, icon: 'search-web', tabbarColor: '#FF1C1C' },
+    { key: 'Workouts', title: 'Plan', component: Workouts, icon: 'arm-flex', tabbarColor: '#72FF1C' },
+    { key: 'Profile', title: 'Perfil', component: Profile, icon: 'account', tabbarColor: '#1CFFE3' },
+    { key: 'Settings', title: 'Config', component: Settings, icon: 'cog', tabbarColor: '#D91CFF' },
+  ]);
+
+  const renderScene = BottomNavigation.SceneMap({
+    Explore: Explore,
+    Workouts: Workouts,
+    Profile: Profile,
+    Settings: Settings,
+  });
+
+  return (
+    <BottomNavigation
+      navigationState={{ index, routes }}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+      shifting={true}
+      activeColor="#f0edf6"
+      inactiveColor="#f0edf6"
+      renderIcon={({ route, focused, color }) => {
+        const iconName = route.icon;
+        const iconSize = focused ? 24 : 30;
+        color = focused ? '#000000' : color;
+        return <MaterialCommunityIcons name={iconName} size={iconSize} color={color} />;
+      }}
+      barStyle={{ 
+        backgroundColor: Color.secondary ,
+        //height: 70,
+        position: 'absolute',
+        bottom: 16,
+        left: 16,
+        right: 16,
+        borderRadius: 16,
+        overflow: 'hidden',
+        height: 73,
+      }}
+      style={{
+      }}
+    />
   );
 }
 
@@ -103,6 +93,7 @@ export default function App() {
   console.log(userLoggedIn);
 
   return (
+    <SafeAreaProvider>
     <NavigationContainer>
       {userLoggedIn ? (
         <MainTabs />
@@ -112,6 +103,7 @@ export default function App() {
         </Stack.Navigator>
       )}
     </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 
@@ -149,17 +141,4 @@ Paginas--
     Privacy
     Cookies
     Legal
-*/
-
-/*
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} options={pageoptions} />
-        <Stack.Screen name="Musclelist" component={Musclelist} options={pageoptions} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
 */
