@@ -1,6 +1,7 @@
 import  React, { useEffect, useState } from "react";
 import { View, SafeAreaView, StyleSheet, ScrollView } from "react-native";
 import { Color, FontSize, FontFamily } from "./styles/GlobalStyles";
+import { BottomNavigation, Text , TouchableRipple} from 'react-native-paper';
 
 import Workouts from "./screens/workouts";
 import Explore from "./screens/explore";
@@ -13,7 +14,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { BottomNavigation, Text } from 'react-native-paper';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 //const Tab = createMaterialTopTabNavigator();
@@ -133,7 +133,8 @@ Paginas--
   Profile
     Registros
     Peso corporal
-  Settings
+  Settings 
+  -- DIVIDER --
     About
     Contact
     Help

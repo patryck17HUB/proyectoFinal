@@ -8,8 +8,8 @@ export const FontSize = {
 };
   /* Colors */
 export const Color = {
-    primary: "#040D12",
-    secondary: "#183D3D",
+    primary: "#0F0F12",
+    secondary: "#2E2E2E",
 };
 
 import { StyleSheet } from "react-native";
