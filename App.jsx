@@ -15,34 +15,21 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-const Tab = createMaterialTopTabNavigator();
+//const Tab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
 
-//const Tab = createMaterialBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 function MainTabs() {
   return (
     <Tab.Navigator 
       initialRouteName="Explore"
-      tabBarPosition="bottom"
-      screenOptions={{
-          swipeEnabled: true,
-          tabBarShowLabel: true,
-          tabBarItemStyle: { 
-            flexDirection: 'row', 
-            justifyContent: 'center', 
-            alignItems: 'center' 
-          },
-          tabBarIndicatorStyle:{
-            position: 'absolute',
-            top: 0,
-            height: 4,
-          },
-          tabBarStyle: { 
-            backgroundColor: Color.secondary, 
-          },
-          tabBarActiveTintColor: '#FFFFFF',
-          tabBarInactiveTintColor: '#000000',
+      activeColor={"#ffffff"}
+      inactiveColor={"#ffffff"}
+      barStyle={{ 
+        backgroundColor: Color.secondary,
+        borderTopWidth: 0,
+        borderTopColor: Color.secondary,
       }}
     >
       
@@ -105,8 +92,8 @@ export default function App() {
   }); 
 
   const handleGetToken = async () => {
-    const token = await AsyncStorage.getItem("AccessToken");
-    console.log(token);
+    const token = "123456789";
+    //const token = await AsyncStorage.getItem("AccessToken");
     if (token) {
       setUserLoggedIn(true);
     }
@@ -152,17 +139,4 @@ Paginas--
     Privacy
     Cookies
     Legal
-*/
-
-/*
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} options={pageoptions} />
-        <Stack.Screen name="Musclelist" component={Musclelist} options={pageoptions} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
 */
