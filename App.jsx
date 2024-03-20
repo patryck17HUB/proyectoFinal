@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { View, Image, Text, SafeAreaView, TouchableOpacity, StyleSheet, ScrollView, TextInput, } from "react-native";
 import Workouts from "./screens/workouts";
 import Explore from "./screens/explore";
 import Profile from "./screens/profile";
 import Settings from "./screens/settings";
 import Login from "./screens/login";
 import { Color, FontSize, FontFamily } from "./styles/GlobalStyles";
+
+import { Text, BottomNavigation } from 'react-native-paper';
 
 // Navegar entre paginas
 import { NavigationContainer } from "@react-navigation/native";
@@ -15,82 +18,66 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-const Tab = createMaterialTopTabNavigator();
-const Stack = createNativeStackNavigator();
+const TabArr = [
+  {
+    name: "Explore",
+    label: "Explorar",
+    component: Explore,
+    icon: "search-web",
+    tabbarColor: "#FF1C1C",
+  },
+  {
+    name: "Workouts",
+    label: "Plan",
+    component: Workouts,
+    icon: "arm-flex",
+    tabbarColor: "#72FF1C",
+  },
+  {
+    name: "Profile",
+    label: "Perfil",
+    component: Profile,
+    icon: "account",
+    tabbarColor: "#1CFFE3",
+  },
+  {
+    name: "Settings",
+    label: "Config",
+    component: Settings,
+    icon: "cog",
+    tabbarColor: "#D91CFF",
+  },
+];
 
-//const Tab = createMaterialBottomTabNavigator();
+//const Tab = createMaterialTopTabNavigator();
+
+const Stack = createNativeStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 function MainTabs() {
   return (
-    <Tab.Navigator 
-      initialRouteName="Explore"
-      tabBarPosition="bottom"
-      screenOptions={{
-          swipeEnabled: true,
-          tabBarShowLabel: true,
-          tabBarItemStyle: { 
-            flexDirection: 'row', 
-            justifyContent: 'center', 
-            alignItems: 'center' 
-          },
-          tabBarIndicatorStyle:{
-            position: 'absolute',
-            top: 0,
-            height: 4,
-          },
-          tabBarStyle: { 
-            backgroundColor: Color.secondary, 
-          },
-          tabBarActiveTintColor: '#FFFFFF',
-          tabBarInactiveTintColor: '#000000',
-      }}
+    <SafeAreaView style={{flex: 1}}>
+    <Tab.Navigator  
+      shifting={true}
+      barStyle={{ height: 70 }}
+      screenOptions={{}}
     >
-      
-      <Tab.Screen 
-        name="Explore" 
-        component={Explore}
-        options={{
-          tabBarLabel: 'Explorar',
-          tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="search-web" color = {color} size={26} />
-          ),
-        }}
+      {TabArr.map((item, index) => (
+        <Tab.Screen 
+          key={index} 
+          name={item.name} 
+          component={item.component}
+          options={{
+            tabBarColor: "#FF1C1C",
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons name={item.icon} color = {color} size={26} />
+            )
+          }}
       />
-
-      <Tab.Screen 
-        name="Workouts" 
-        component={Workouts}
-        options={{
-          tabBarLabel: 'Plan',
-          tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="arm-flex" color = {color} size={26} />
-          ),
-        }}
-      />
-
-      <Tab.Screen 
-        name="Profile" 
-        component={Profile}
-        options={{
-          tabBarLabel: 'Perfil',
-          tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="account" color = {color} size={26} />
-          ),
-        }}
-      />
-
-      <Tab.Screen 
-        name="Settings" 
-        component={Settings}
-        options={{
-          tabBarLabel: 'Config',
-          tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="cog" color = {color} size={26} />
-          ),
-        }}
-      />
+      ))}
 
     </Tab.Navigator>
+    </SafeAreaView>
   );
 }
 
@@ -105,7 +92,8 @@ export default function App() {
   }); 
 
   const handleGetToken = async () => {
-    const token = await AsyncStorage.getItem("AccessToken");
+    const token = "123456"
+    //const token = await AsyncStorage.getItem("AccessToken");
     console.log(token);
     if (token) {
       setUserLoggedIn(true);
@@ -129,7 +117,16 @@ export default function App() {
 
 const pageoptions = {
   headerShown: false,
+  tabBarShowLabel: false,
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  }
+})
 
 /* COSAS POR HACER
 Paginas--
