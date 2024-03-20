@@ -4,18 +4,19 @@ import { TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import { styles } from "../styles/explorestyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { Color, FontSize, FontFamily } from "../styles/GlobalStyles";
+import { isLeftHandSideExpression } from 'typescript';
 
-const FirstRoute = () => (
+const Ejercicios = () => (
   <View style={{ flex: 1, backgroundColor: Color.primary }} />
 );
 
-const SecondRoute = () => (
+const Plantillas = () => (
   <View style={{ flex: 1, backgroundColor: Color.primary }} />
 );
 
 const renderScene = SceneMap({
-  first: FirstRoute,
-  second: SecondRoute,
+  Ejercicios: Ejercicios,
+  Plantillas: Plantillas,
 });
 
 export default function Explore({ navigation }) {
@@ -23,22 +24,34 @@ export default function Explore({ navigation }) {
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'first', title: 'First' },
-    { key: 'second', title: 'Second' },
+    { key: 'Ejercicios', title: 'Ejercicios' },
+    { key: 'Plantillas', title: 'Plantillas' },
   ]);
+
+  const dynamicTabBarStyle = (index) => ({
+    margin: 16,
+    backgroundColor: index === 0 ? Color.secondary : Color.secondary, // Dynamic color based on index
+    top: 38,
+    borderRadius: 10,
+  });
 
   const renderTabBar = props => (
     <TabBar
       {...props}
-      indicatorStyle={{ backgroundColor: 'white' }}
-      style={{ 
-        backgroundColor: 'pink', 
+      indicatorStyle={{ 
+        backgroundColor: 'white',
+        width: '46%',
+        left: '2.5%',
+        right: '2.5%',
+      }}
+      style={dynamicTabBarStyle(index)}
+      
+      labelStyle={{ 
+        color: 'white', 
       }}
 
-      labelStyle={{ color: 'black' }} // Cambia el color del texto aquí
-
       renderLabel={({ route, focused, color }) => (
-        <Text style={{ color, margin: 8 }}>
+        <Text style={{ color, margin: 0 , fontSize: 16 }}>
           {route.title}
         </Text>
       )}
