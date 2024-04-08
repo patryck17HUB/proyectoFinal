@@ -19,8 +19,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 //const Tab = createMaterialTopTabNavigator();
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
-//const Tab = createMaterialBottomTabNavigator();
+const Stack = createNativeStackNavigator(); 
 
 function MainTabs() {
 
