@@ -16,12 +16,17 @@ export default function() {
         size={GoogleSigninButton.Size.Wide}
         color={GoogleSigninButton.Color.Dark}
         onPress={async () => {
+          console.log("Onpress");
             try {
+              console.log("SI");
               await GoogleSignin.hasPlayServices();
+              console.log("Play services");
               const userInfo = await GoogleSignin.signIn();
+              console.log("NO");
               console.log(JSON.stringify(userInfo, null, 2));
               //setState({ userInfo });
-            } catch (error: any) {
+            } catch (error) {
+              console.log(error)
               if (error.code === statusCodes.SIGN_IN_CANCELLED) {
                 // user cancelled the login flow
               } else if (error.code === statusCodes.IN_PROGRESS) {

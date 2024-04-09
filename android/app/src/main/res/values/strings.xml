@@ -2,4 +2,5 @@
   <string name="app_name">ProyectoFinal</string>
   <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
   <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
+  <string name="server_client_id">637736596372-vq92i9scftbu8voja7ge91o44ijhhqrt.apps.googleusercontent.com</string>
 </resources>
