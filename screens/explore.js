@@ -5,8 +5,6 @@ import { styles } from "../styles/explorestyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { Color, FontSize, FontFamily } from "../styles/GlobalStyles";
 
-import Auth from '../components/Auth';
-
 const FirstRoute = () => (
   <View style={{ flex: 1, backgroundColor: Color.primary }} />
 );
