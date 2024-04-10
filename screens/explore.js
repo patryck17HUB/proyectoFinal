@@ -5,11 +5,8 @@ import { styles } from "../styles/explorestyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { Color, FontSize, FontFamily } from "../styles/GlobalStyles";
 
-<<<<<<< HEAD
 import Auth from '../components/Auth';
 
-=======
->>>>>>> parent of 2b4da45 (Entrega 1)
 const FirstRoute = () => (
   <View style={{ flex: 1, backgroundColor: Color.primary }} />
 );
