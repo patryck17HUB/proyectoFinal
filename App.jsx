@@ -71,8 +71,9 @@ function MainTabs() {
 }
 
 export default function App() {
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(true);
 
+  /*
   useEffect(() => {
     setTimeout(() => {
       handleGetToken();
@@ -88,6 +89,7 @@ export default function App() {
       setUserLoggedIn(true);
     }
   }
+  */
 
   console.log(userLoggedIn);
 

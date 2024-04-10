@@ -4,19 +4,20 @@ import { TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import { styles } from "../styles/explorestyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { Color, FontSize, FontFamily } from "../styles/GlobalStyles";
-import { isLeftHandSideExpression } from 'typescript';
 
-const Ejercicios = () => (
+import Auth from '../components/Auth';
+
+const FirstRoute = () => (
   <View style={{ flex: 1, backgroundColor: Color.primary }} />
 );
 
-const Plantillas = () => (
+const SecondRoute = () => (
   <View style={{ flex: 1, backgroundColor: Color.primary }} />
 );
 
 const renderScene = SceneMap({
-  Ejercicios: Ejercicios,
-  Plantillas: Plantillas,
+  first: FirstRoute,
+  second: SecondRoute,
 });
 
 export default function Explore({ navigation }) {
@@ -24,34 +25,22 @@ export default function Explore({ navigation }) {
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'Ejercicios', title: 'Ejercicios' },
-    { key: 'Plantillas', title: 'Plantillas' },
+    { key: 'first', title: 'First' },
+    { key: 'second', title: 'Second' },
   ]);
-
-  const dynamicTabBarStyle = (index) => ({
-    margin: 16,
-    backgroundColor: index === 0 ? Color.secondary : Color.secondary, // Dynamic color based on index
-    top: 38,
-    borderRadius: 10,
-  });
 
   const renderTabBar = props => (
     <TabBar
       {...props}
-      indicatorStyle={{ 
-        backgroundColor: 'white',
-        width: '46%',
-        left: '2.5%',
-        right: '2.5%',
-      }}
-      style={dynamicTabBarStyle(index)}
-      
-      labelStyle={{ 
-        color: 'white', 
+      indicatorStyle={{ backgroundColor: 'white' }}
+      style={{ 
+        backgroundColor: 'pink', 
       }}
 
+      labelStyle={{ color: 'black' }} // Cambia el color del texto aquí
+
       renderLabel={({ route, focused, color }) => (
-        <Text style={{ color, margin: 0 , fontSize: 16 }}>
+        <Text style={{ color, margin: 8 }}>
           {route.title}
         </Text>
       )}
@@ -70,6 +59,7 @@ export default function Explore({ navigation }) {
       indicatorStyle={{ backgroundColor: Color.secondary }}
       style={{backgroundColor: Color.primary}}
       />
+      <Auth />
     </View>
   );
 }

@@ -21,13 +21,21 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.pat.proyectofinal"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-secure-store"
-    ]
+      [
+        "@react-native-google-signin/google-signin"
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "bcbe4cfc-112e-419e-958c-f4db4aa1d807"
+      }
+    }
   }
 }
